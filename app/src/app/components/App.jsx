@@ -7,7 +7,6 @@ import { WagmiConfig } from 'wagmi'
 //import { useEffect, useState } from "react"
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 import { sepolia } from 'viem/chains'
-//import { createWalletClient, custom } from 'viem'
 
 const projectId = '39fc2b7c598c1acf992776d335c3acb4'
 
