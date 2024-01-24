@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 
-export default function Contract() {
+export default function Contract({setEscrows}) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const arbiterAddress = document.getElementById('arbiter').value
@@ -14,6 +14,26 @@ export default function Contract() {
       const useDeployFunction = deployModule.default
 
       escrowContract = await useDeployFunction(arbiterAddress, beneficiaryAddress, depositAmount)
+      
+      const escrow = {
+        address: escrowContract,
+        arbiter: arbiterAddress,
+        beneficiary: beneficiaryAddress,
+        value: depositAmount.toString(),
+        handleApprove: async () => {
+          escrowContract.on('Approved', () => {
+            document.getElementById(escrowContract).className =
+              'complete'
+            document.getElementById(escrowContract).innerText =
+              "✓ It's been approved!"
+          });
+
+          await approve(escrowContract)
+        },
+      }
+    console.log('here is the Escrow Object: ', escrow)
+    setEscrows((escrows) => [...escrows, escrow]);
+
     } catch(error) {
       console.error(error)
     }

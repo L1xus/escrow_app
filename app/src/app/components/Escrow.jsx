@@ -1,0 +1,44 @@
+
+export default function Escrow({
+  address,
+  arbiter,
+  beneficiary,
+  value,
+  handleApprove,
+}) {
+  return (
+    <div className="existing-contract inline-block bg-white border border-gray-200">
+      <ul className="fields">
+        <li>
+          <div>Arbiter</div>
+          <div>
+            {arbiter.slice(0, 6)}...
+            {arbiter.slice(arbiter.length - 4, arbiter.length)}
+          </div>
+        </li>
+        <li>
+          <div>Beneficiary</div>
+          <div>
+            {beneficiary.slice(0, 6)}...
+            {beneficiary.slice(beneficiary.length - 4, beneficiary.length)}
+          </div>
+        </li>
+        <li>
+          <div>Value</div>
+          <div>{value}</div>
+        </li>
+        <button
+          className="button"
+          id={address}
+          onClick={(e) => {
+            e.preventDefault()
+
+            handleApprove()
+          }}
+        >
+          Approve
+        </button>
+      </ul>
+    </div>
+  )
+}

@@ -4,7 +4,7 @@ import Search from "./Search"
 import Contract from "./Contract"
 import EContracts from "./EContracts"
 import { WagmiConfig } from 'wagmi'
-//import { useEffect, useState } from "react"
+import { useState } from "react"
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 import { sepolia } from 'viem/chains'
 
@@ -27,6 +27,7 @@ createWeb3Modal({
 })
 
 export default function App() {
+  const [escrows, setEscrows] = useState([])
   return (
     <WagmiConfig config={wagmiConfig}>
       <div className='flex justify-between max-w-4xl mx-auto p-2'>
@@ -36,8 +37,8 @@ export default function App() {
       <div className="flex flex-col items-center gap-2 max-w-4xl mx-auto p-2">
         <Search/>      
         <div className="w-full flex space-between gap-2">
-          <Contract/>
-          <EContracts/>
+          <Contract setEscrows={setEscrows} />
+          <EContracts escrows={escrows} />
         </div>
       </div>
     </WagmiConfig>
