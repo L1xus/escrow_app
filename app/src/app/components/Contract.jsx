@@ -15,24 +15,30 @@ export default function Contract({setEscrows}) {
 
       escrowContract = await useDeployFunction(arbiterAddress, beneficiaryAddress, depositAmount)
       
+      const approveModule = await import('../utils/useApprove')
+      const approveFunction = approveModule.default 
+
       const escrow = {
         address: escrowContract,
         arbiter: arbiterAddress,
         beneficiary: beneficiaryAddress,
         value: depositAmount.toString(),
+        // handleApprove: async () => {
+        //   escrowContract.on('Approved', () => {
+        //     document.getElementById(escrowContract).className =
+        //       'complete'
+        //     document.getElementById(escrowContract).innerText =
+        //       "✓ It's been approved!"
+        //   });
+        //
+        //   await approve(escrowContract)
+        // },
         handleApprove: async () => {
-          escrowContract.on('Approved', () => {
-            document.getElementById(escrowContract).className =
-              'complete'
-            document.getElementById(escrowContract).innerText =
-              "✓ It's been approved!"
-          });
-
-          await approve(escrowContract)
-        },
+          await approveFunction(arbiterAddress, escrowContract)
+        }
       }
-    console.log('here is the Escrow Object: ', escrow)
-    setEscrows((escrows) => [...escrows, escrow]);
+      console.log('here is the Escrow Object: ', escrow)
+      setEscrows((escrows) => [...escrows, escrow])
 
     } catch(error) {
       console.error(error)

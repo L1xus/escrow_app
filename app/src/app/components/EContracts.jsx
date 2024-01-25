@@ -8,7 +8,7 @@ export default function EContracts({ escrows }) {
       <div id="container">
         {escrows.map((escrow) => {
         return <Escrow key={escrow} {...escrow} />;
-      })}
+        })}
         {/* <Escrow/> */}
       </div>
     </div>

@@ -7,7 +7,7 @@ export default function Escrow({
   handleApprove,
 }) {
   return (
-    <div className="existing-contract inline-block bg-white border border-gray-200">
+    <div className="existing-contract">
       <ul className="fields">
         <li>
           <div>Arbiter</div>

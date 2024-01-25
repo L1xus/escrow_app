@@ -51,10 +51,15 @@ label {
   color:  gray;
 }
 
+.existing-contracts {
+  @apply inline-block bg-white border border-gray-200;
+}
+
 .existing-contract ul {
   padding: 10px;
   margin: 20px;
-  background-color: #eee;
+  background-color: #393d45;
+
 }
 
 .existing-contract ul > li {

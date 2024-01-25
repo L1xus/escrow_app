@@ -28,31 +28,3 @@ export default async function useDeploy(arbiter, beneficiary, value) {
   }
 }
 
-
-
-
-
-
-
-
-
-/*import { useContractWrite, usePrepareContractWrite } from 'wagmi'
-
-export function useDeploy(arbiter, beneficiary, value) {
-  const { config } = usePrepareContractWrite({
-    abi: Escrow.abi,
-    functionName: 'constructor',
-    args: [arbiter, beneficiary],
-    value: parseEther(value),
-    bytecode: Escrow.bytecode,
-  }) 
-
-  const { write } = useContractWrite(config)
-
-  return async () => {
-    const deploy = await write()
-    console.log('from deploy function: ', deploy)
-    return deploy
-  }
-}
-*/
