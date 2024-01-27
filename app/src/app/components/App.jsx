@@ -8,7 +8,7 @@ import { useState } from "react"
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 import { sepolia } from 'viem/chains'
 
-const projectId = '39fc2b7c598c1acf992776d335c3acb4'
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
 
 const metadata = {
   name: 'escrow-app',
@@ -35,7 +35,7 @@ export default function App() {
         <w3m-button />
       </div>
       <div className="flex flex-col items-center gap-2 max-w-4xl mx-auto p-2">
-        <Search/>      
+        <Search escrows={escrows}/>      
         <div className="w-full flex space-between gap-2">
           <Contract setEscrows={setEscrows} />
           <EContracts escrows={escrows} />

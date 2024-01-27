@@ -1,4 +1,5 @@
 'use client'
+
 import Escrow from './Escrow'
 
 export default function EContracts({ escrows }) {
@@ -9,7 +10,6 @@ export default function EContracts({ escrows }) {
         {escrows.map((escrow) => {
         return <Escrow key={escrow} {...escrow} />;
         })}
-        {/* <Escrow/> */}
       </div>
     </div>
   )

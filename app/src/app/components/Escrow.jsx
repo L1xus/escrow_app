@@ -1,4 +1,3 @@
-
 export default function Escrow({
   address,
   arbiter,

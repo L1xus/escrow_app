@@ -23,31 +23,17 @@ export default function Contract({setEscrows}) {
         arbiter: arbiterAddress,
         beneficiary: beneficiaryAddress,
         value: depositAmount.toString(),
-        // handleApprove: async () => {
-        //   escrowContract.on('Approved', () => {
-        //     document.getElementById(escrowContract).className =
-        //       'complete'
-        //     document.getElementById(escrowContract).innerText =
-        //       "✓ It's been approved!"
-        //   });
-        //
-        //   await approve(escrowContract)
-        // },
         handleApprove: async () => {
           await approveFunction(arbiterAddress, escrowContract)
+          document.getElementById(escrowContract).className = 'complete'
+          document.getElementById(escrowContract).innerText = "✓ It's been approved!" 
         }
       }
-      console.log('here is the Escrow Object: ', escrow)
       setEscrows((escrows) => [...escrows, escrow])
 
     } catch(error) {
       console.error(error)
     }
-
-    console.log('Arbiter Address:', arbiterAddress)
-    console.log('Beneficiary Address:', beneficiaryAddress)
-    console.log('Deposit Amount:', depositAmount)
-    console.log('The Contract deployed to: ', escrowContract)
   }
 
   return ( 

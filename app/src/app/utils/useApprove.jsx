@@ -11,7 +11,12 @@ export default async function useApprove(arbiter, address) {
       abi: Escrow.abi,
       functionName: 'approve',
     })
-    return await walletClient.writeContract(request)
+    const hash = await walletClient.writeContract(request)
+    const transaction = await publicClient.waitForTransactionReceipt({
+      hash: hash
+    })
+ 
+    return transaction
   } catch(error) {
     console.error('Dang it!!', error)
     throw error
